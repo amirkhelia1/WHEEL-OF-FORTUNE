@@ -1,1 +1,25 @@
+body{
+  font-family: Arial, sans-serif;
+  min-height:100vh;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:#1f2a35;
+
+  background-image: url("assets/img/Merry%20Christmas%20and%20new%20year%20background%20templ.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: -1;
+}
 
