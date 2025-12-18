@@ -3,293 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Promo Code Wheel</title>
-
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f4f4;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-
-    .header-logo {
-      max-width: 200px;
-      margin-bottom: 16px;
-    }
-
-    .wheel-container {
-      position: relative;
-      width: 350px;
-      height: 350px;
-      margin-bottom: 20px;
-    }
-
-    .marker {
-      position: absolute;
-      top: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-top: 40px solid #333;
-      z-index: 60;
-    }
-
-    .center-hub-logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90px;
-      height: 90px;
-      background: white;
-      border-radius: 50%;
-      z-index: 55;
-      padding: 6px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      object-fit: contain;
-      pointer-events: none;
-    }
-
-    .wheel {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      border: 10px solid #333;
-      position: relative;
-      transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
-      overflow: hidden;
-      background: #fff;
-      z-index: 10;
-    }
-
-    .wheel-bg {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: conic-gradient(
-        #ffffff 0deg 36deg,
-        #c0392b 36deg 72deg,
-        #ffffff 72deg 108deg,
-        #c0392b 108deg 144deg,
-        #ffffff 144deg 180deg,
-        #c0392b 180deg 216deg,
-        #ffffff 216deg 252deg,
-        #c0392b 252deg 288deg,
-        #ffffff 288deg 324deg,
-        #c0392b 324deg 360deg
-      );
-    }
-
-    .labels {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 20;
-    }
-
-    .label {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform-origin: 0 0;
-    }
-
-    .label span {
-      display: block;
-      transform: rotate(75deg);
-      margin-top: -12px;
-      margin-left: 50px;
-      font-weight: bold;
-      font-size: 18px;
-      width: 120px;
-      text-align: left;
-    }
-
-    .win-text {
-      color: #c0392b;
-      font-size: 22px !important;
-    }
-
-    .gl-text {
-      color: white;
-      font-size: 11px !important;
-      line-height: 1.2;
-      text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-      white-space: nowrap;
-    }
-
-    #phoneGate {
-      width: 85%;
-      max-width: 400px;
-      background: #fff;
-      padding: 15px;
-      border: 2px solid #333;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-
-    #phoneInput {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      border: 2px solid #ddd;
-      border-radius: 8px;
-      box-sizing: border-box;
-    }
-
-    #activateBtn {
-      margin-top: 12px;
-      width: 100%;
-      padding: 12px;
-      font-size: 18px;
-      background: #27ae60;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    #phoneError {
-      display: none;
-      color: #c0392b;
-      font-weight: bold;
-      margin-top: 8px;
-    }
-
-    #spinBtn {
-      padding: 15px 40px;
-      font-size: 20px;
-      background-color: #2c3e50;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      transition: background 0.3s;
-    }
-
-    #spinBtn:hover { background-color: #34495e; }
-
-    #spinBtn:disabled {
-      background-color: #95a5a6;
-      cursor: not-allowed;
-      box-shadow: none;
-    }
-
-    #resultModal {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      text-align: center;
-      z-index: 200;
-      width: 85%;
-      max-width: 400px;
-      border: 2px solid #333;
-    }
-
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 150;
-    }
-
-    .promo-box {
-      background: #f0f0f0;
-      border: 2px dashed #333;
-      padding: 10px;
-      font-family: 'Courier New', monospace;
-      font-size: 24px;
-      font-weight: bold;
-      margin: 15px 0;
-      letter-spacing: 2px;
-      color: #c0392b;
-    }
-
-    .disclaimer {
-      font-size: 0.85em;
-      color: #555;
-      margin-top: 15px;
-      font-style: italic;
-      border-top: 1px solid #ddd;
-      padding-top: 10px;
-    }
-
-    .win-amount {
-      font-size: 1.8em;
-      color: #27ae60;
-      font-weight: bold;
-      margin: 5px 0;
-    }
-
-    .close-btn {
-      margin-top: 15px;
-      padding: 10px 25px;
-      background: #27ae60;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-  </style>
+  <title>Tokyo Store - New Year Wheel</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-
 <body>
-  <img src="logo-tokyo-store.png" alt="Tokyo Store" class="header-logo"
-       onerror="this.style.display='none';">
+  <img src="assets/img/logo-tokyo-store.png" alt="Tokyo Store" class="header-logo" onerror="this.style.display='none';">
 
-  <div id="phoneGate">
-    <h3 style="margin:0 0 10px 0;">Add your phone number to activate the wheel</h3>
+  <div class="card" id="phoneGate">
+    <h3>Add your phone number to activate the wheel</h3>
 
-    <input
-      id="phoneInput"
-      type="tel"
-      inputmode="tel"
-      autocomplete="tel"
-      placeholder="Example: 20123456 or +21620123456"
-      required
-      pattern="^(\+216)?[0-9]{8}$"
-    >
+    <div class="row">
+      <input
+        id="phoneInput"
+        type="tel"
+        inputmode="tel"
+        autocomplete="tel"
+        placeholder="20123456 or +21620123456"
+        required
+        pattern="^(\+216)?[0-9]{8}$"
+      />
+      <button id="activateBtn">Activate</button>
+    </div>
 
-    <div id="phoneError">Tunisian number only (8 digits or +216 + 8 digits).</div>
-
-    <button id="activateBtn">Activate</button>
-
-    <p style="margin:10px 0 0 0; font-size:12px; color:#555;">
-      Accepted: 20123456 or +21620123456
-    </p>
+    <div id="phoneError"></div>
+    <div class="mini">Tunisian numbers only. You will get 3 spins and we keep the best result.</div>
   </div>
 
   <div class="wheel-container">
     <div class="marker"></div>
 
-    <img src="mylogo.png" class="center-hub-logo" alt="Center Logo"
+    <img src="assets/img/logo-tokyo-store.png" class="center-hub-logo" alt="Tokyo Store"
          onerror="this.onerror=null; this.style.display='none';">
 
     <div class="wheel" id="wheel">
       <div class="wheel-bg"></div>
-
       <div class="labels">
         <div class="label" style="transform: rotate(18deg);"><span class="win-text">2%</span></div>
         <div class="label" style="transform: rotate(54deg);"><span class="gl-text">حظا سعيدا<br>في المرة القادمة</span></div>
@@ -305,15 +52,15 @@
     </div>
   </div>
 
-  <button id="spinBtn" disabled>SPIN</button>
-  <p id="spinStatus" style="color:#c0392b; display:none; font-weight:bold; margin-top:10px;">
-    You have already spun!
-  </p>
+  <button id="spinBtn" disabled>SPIN (0/3)</button>
+  <div id="statusLine"></div>
 
   <div class="modal-overlay" id="overlay"></div>
   <div id="resultModal">
-    <h2 id="modalTitle">Congratulations!</h2>
+    <h2 id="modalTitle">Result</h2>
     <div class="win-amount" id="modalResult"></div>
+
+    <div id="spinsLog" class="mini"></div>
 
     <div id="codeContainer" style="display:none;">
       <p>Your Promo Code:</p>
@@ -325,171 +72,9 @@
       <strong>EXCEPT (this promo code is not for phone purshase)</strong>
     </p>
 
-    <button class="close-btn" onclick="closeModal()">Claim / Close</button>
+    <button class="close-btn" id="closeBtn">Close</button>
   </div>
 
-  <script>
-    const wheel = document.getElementById('wheel');
-    const spinBtn = document.getElementById('spinBtn');
-    const spinStatus = document.getElementById('spinStatus');
-
-    const overlay = document.getElementById('overlay');
-    const modal = document.getElementById('resultModal');
-    const modalResult = document.getElementById('modalResult');
-    const modalTitle = document.getElementById('modalTitle');
-    const codeContainer = document.getElementById('codeContainer');
-    const generatedCodeDisplay = document.getElementById('generatedCode');
-
-    const phoneGate = document.getElementById('phoneGate');
-    const phoneInput = document.getElementById('phoneInput');
-    const phoneError = document.getElementById('phoneError');
-    const activateBtn = document.getElementById('activateBtn');
-
-    const isActivated = localStorage.getItem('wheelActivated') === 'true';
-    const hasSpun = localStorage.getItem('hasSpun') === 'true';
-
-    function setActivatedUI(active) {
-      if (active) {
-        phoneGate.style.display = 'none';
-        spinBtn.disabled = hasSpun;
-      } else {
-        phoneGate.style.display = 'block';
-        spinBtn.disabled = true;
-      }
-    }
-
-    setActivatedUI(isActivated);
-
-    if (hasSpun) {
-      spinBtn.disabled = true;
-      spinBtn.innerText = "SPIN USED";
-      spinStatus.style.display = 'block';
-    }
-
-    function normalizeTNPhone(value) {
-      let p = (value || "").trim().replace(/\s+/g, '');
-      if (/^\d{8}$/.test(p)) return "+216" + p;
-      if (/^\+216\d{8}$/.test(p)) return p;
-      return null;
-    }
-
-    activateBtn.addEventListener('click', () => {
-      if (!phoneInput.checkValidity()) {
-        phoneError.style.display = 'block';
-        phoneInput.focus();
-        return;
-      }
-      const normalized = normalizeTNPhone(phoneInput.value);
-      if (!normalized) {
-        phoneError.style.display = 'block';
-        phoneInput.focus();
-        return;
-      }
-
-      phoneError.style.display = 'none';
-      localStorage.setItem('wheelActivated', 'true');
-      localStorage.setItem('wheelPhone', normalized);
-
-      setActivatedUI(true);
-    });
-
-    const segmentData = [
-      { label: "2%", type: "win" },
-      { label: "GL", type: "loss" },
-      { label: "4%", type: "win" },
-      { label: "GL", type: "loss" },
-      { label: "6%", type: "win" },
-      { label: "GL", type: "loss" },
-      { label: "8%", type: "win" },
-      { label: "GL", type: "loss" },
-      { label: "10%", type: "win" },
-      { label: "GL", type: "loss" }
-    ];
-
-    let currentRotation = 0;
-
-    function generateCode() {
-      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-      let result = "";
-      for (let i = 0; i < 5; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      return result;
-    }
-
-    spinBtn.addEventListener('click', () => {
-      if (localStorage.getItem('wheelActivated') !== 'true') return;
-      if (localStorage.getItem('hasSpun')) return;
-
-      spinBtn.disabled = true;
-
-      const mainRoll = Math.random();
-      let targetType = "";
-      let targetLabel = "";
-
-      if (mainRoll < 0.50) {
-        targetType = "loss";
-        targetLabel = "GL";
-      } else {
-        targetType = "win";
-        const prizeRoll = Math.random() * 100;
-        if (prizeRoll < 30) targetLabel = "2%";
-        else if (prizeRoll < 55) targetLabel = "4%";
-        else if (prizeRoll < 75) targetLabel = "6%";
-        else if (prizeRoll < 90) targetLabel = "8%";
-        else targetLabel = "10%";
-      }
-
-      const validIndices = [];
-      segmentData.forEach((seg, index) => {
-        if (seg.type === targetType) {
-          if (targetType === "win" && seg.label === targetLabel) validIndices.push(index);
-          if (targetType === "loss") validIndices.push(index);
-        }
-      });
-
-      const targetIndex = validIndices[Math.floor(Math.random() * validIndices.length)];
-      const randomOffset = Math.floor(Math.random() * 20) - 10;
-      const minSpin = 1800;
-      const baseTarget = (targetIndex * 36) + 18 + randomOffset;
-
-      const currentMod = currentRotation % 360;
-      let distance = baseTarget - currentMod;
-      if (distance < 0) distance += 360;
-
-      const totalSpin = minSpin + distance;
-      currentRotation += totalSpin;
-
-      wheel.style.transform = `rotate(-${currentRotation}deg)`;
-
-      localStorage.setItem('hasSpun', 'true');
-
-      setTimeout(() => {
-        if (targetType === "loss") {
-          modalTitle.innerText = "Oh no!";
-          modalResult.innerText = "Good Luck Next Time";
-          modalResult.style.color = "#c0392b";
-          codeContainer.style.display = "none";
-        } else {
-          modalTitle.innerText = "Congratulations!";
-          modalResult.innerText = "You won " + targetLabel + " OFF";
-          modalResult.style.color = "#27ae60";
-          codeContainer.style.display = "block";
-          generatedCodeDisplay.innerText = generateCode();
-        }
-
-        overlay.style.display = 'block';
-        modal.style.display = 'block';
-
-        spinBtn.innerText = "SPIN USED";
-        spinStatus.style.display = 'block';
-      }, 4000);
-    });
-
-    function closeModal() {
-      overlay.style.display = 'none';
-      modal.style.display = 'none';
-    }
-  </script>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
