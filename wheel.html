@@ -19,29 +19,14 @@
 
     .header-logo {
       max-width: 200px;
-      margin-bottom: 20px;
-    }
-
-    .center-hub-logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80px;
-      height: 80px;
-      background: white;
-      border-radius: 50%;
-      z-index: 5;
-      padding: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      object-fit: contain;
+      margin-bottom: 16px;
     }
 
     .wheel-container {
       position: relative;
       width: 350px;
       height: 350px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     .marker {
@@ -54,7 +39,23 @@
       border-left: 20px solid transparent;
       border-right: 20px solid transparent;
       border-top: 40px solid #333;
-      z-index: 10;
+      z-index: 60;
+    }
+
+    .center-hub-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90px;
+      height: 90px;
+      background: white;
+      border-radius: 50%;
+      z-index: 55;
+      padding: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      object-fit: contain;
+      pointer-events: none;
     }
 
     .wheel {
@@ -66,6 +67,7 @@
       transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
       overflow: hidden;
       background: #fff;
+      z-index: 10;
     }
 
     .wheel-bg {
@@ -73,16 +75,16 @@
       height: 100%;
       border-radius: 50%;
       background: conic-gradient(
-        #ffffff 0deg 36deg,    /* 2% */
-        #c0392b 36deg 72deg,   /* GL */
-        #ffffff 72deg 108deg,  /* 4% */
-        #c0392b 108deg 144deg, /* GL */
-        #ffffff 144deg 180deg, /* 6% */
-        #c0392b 180deg 216deg, /* GL */
-        #ffffff 216deg 252deg, /* 8% */
-        #c0392b 252deg 288deg, /* GL */
-        #ffffff 288deg 324deg, /* 10% */
-        #c0392b 324deg 360deg  /* GL */
+        #ffffff 0deg 36deg,
+        #c0392b 36deg 72deg,
+        #ffffff 72deg 108deg,
+        #c0392b 108deg 144deg,
+        #ffffff 144deg 180deg,
+        #c0392b 180deg 216deg,
+        #ffffff 216deg 252deg,
+        #c0392b 252deg 288deg,
+        #ffffff 288deg 324deg,
+        #c0392b 324deg 360deg
       );
     }
 
@@ -92,6 +94,7 @@
       left: 0;
       width: 100%;
       height: 100%;
+      z-index: 20;
     }
 
     .label {
@@ -125,6 +128,44 @@
       white-space: nowrap;
     }
 
+    #phoneGate {
+      width: 85%;
+      max-width: 400px;
+      background: #fff;
+      padding: 15px;
+      border: 2px solid #333;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    #phoneInput {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    #activateBtn {
+      margin-top: 12px;
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+      background: #27ae60;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #phoneError {
+      display: none;
+      color: #c0392b;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
     #spinBtn {
       padding: 15px 40px;
       font-size: 20px;
@@ -156,7 +197,7 @@
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
       text-align: center;
-      z-index: 20;
+      z-index: 200;
       width: 85%;
       max-width: 400px;
       border: 2px solid #333;
@@ -170,7 +211,7 @@
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.5);
-      z-index: 15;
+      z-index: 150;
     }
 
     .promo-box {
@@ -215,14 +256,34 @@
 </head>
 
 <body>
-
   <img src="logo-tokyo-store.png" alt="Tokyo Store" class="header-logo"
        onerror="this.style.display='none';">
+
+  <div id="phoneGate">
+    <h3 style="margin:0 0 10px 0;">Add your phone number to activate the wheel</h3>
+
+    <input
+      id="phoneInput"
+      type="tel"
+      inputmode="tel"
+      autocomplete="tel"
+      placeholder="Example: 20123456 or +21620123456"
+      required
+      pattern="^(\+216)?[0-9]{8}$"
+    >
+
+    <div id="phoneError">Tunisian number only (8 digits or +216 + 8 digits).</div>
+
+    <button id="activateBtn">Activate</button>
+
+    <p style="margin:10px 0 0 0; font-size:12px; color:#555;">
+      Accepted: 20123456 or +21620123456
+    </p>
+  </div>
 
   <div class="wheel-container">
     <div class="marker"></div>
 
-    <!-- Center logo -->
     <img src="mylogo.png" class="center-hub-logo" alt="Center Logo"
          onerror="this.onerror=null; this.style.display='none';">
 
@@ -244,13 +305,12 @@
     </div>
   </div>
 
-  <button id="spinBtn">SPIN</button>
+  <button id="spinBtn" disabled>SPIN</button>
   <p id="spinStatus" style="color:#c0392b; display:none; font-weight:bold; margin-top:10px;">
     You have already spun!
   </p>
 
   <div class="modal-overlay" id="overlay"></div>
-
   <div id="resultModal">
     <h2 id="modalTitle">Congratulations!</h2>
     <div class="win-amount" id="modalResult"></div>
@@ -272,6 +332,7 @@
     const wheel = document.getElementById('wheel');
     const spinBtn = document.getElementById('spinBtn');
     const spinStatus = document.getElementById('spinStatus');
+
     const overlay = document.getElementById('overlay');
     const modal = document.getElementById('resultModal');
     const modalResult = document.getElementById('modalResult');
@@ -279,12 +340,58 @@
     const codeContainer = document.getElementById('codeContainer');
     const generatedCodeDisplay = document.getElementById('generatedCode');
 
-    // localStorage persists per site origin across sessions (good for "one spin per browser"). 
-    if (localStorage.getItem('hasSpun')) {
+    const phoneGate = document.getElementById('phoneGate');
+    const phoneInput = document.getElementById('phoneInput');
+    const phoneError = document.getElementById('phoneError');
+    const activateBtn = document.getElementById('activateBtn');
+
+    const isActivated = localStorage.getItem('wheelActivated') === 'true';
+    const hasSpun = localStorage.getItem('hasSpun') === 'true';
+
+    function setActivatedUI(active) {
+      if (active) {
+        phoneGate.style.display = 'none';
+        spinBtn.disabled = hasSpun;
+      } else {
+        phoneGate.style.display = 'block';
+        spinBtn.disabled = true;
+      }
+    }
+
+    setActivatedUI(isActivated);
+
+    if (hasSpun) {
       spinBtn.disabled = true;
       spinBtn.innerText = "SPIN USED";
       spinStatus.style.display = 'block';
     }
+
+    function normalizeTNPhone(value) {
+      let p = (value || "").trim().replace(/\s+/g, '');
+      if (/^\d{8}$/.test(p)) return "+216" + p;
+      if (/^\+216\d{8}$/.test(p)) return p;
+      return null;
+    }
+
+    activateBtn.addEventListener('click', () => {
+      if (!phoneInput.checkValidity()) {
+        phoneError.style.display = 'block';
+        phoneInput.focus();
+        return;
+      }
+      const normalized = normalizeTNPhone(phoneInput.value);
+      if (!normalized) {
+        phoneError.style.display = 'block';
+        phoneInput.focus();
+        return;
+      }
+
+      phoneError.style.display = 'none';
+      localStorage.setItem('wheelActivated', 'true');
+      localStorage.setItem('wheelPhone', normalized);
+
+      setActivatedUI(true);
+    });
 
     const segmentData = [
       { label: "2%", type: "win" },
@@ -311,6 +418,7 @@
     }
 
     spinBtn.addEventListener('click', () => {
+      if (localStorage.getItem('wheelActivated') !== 'true') return;
       if (localStorage.getItem('hasSpun')) return;
 
       spinBtn.disabled = true;
