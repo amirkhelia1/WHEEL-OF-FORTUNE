@@ -127,17 +127,41 @@ body::before{
   width:100%;
   height:100%;
   border-radius:50%;
+  /* 33 segments alternating white and red - each segment is 10.909 degrees */
   background: conic-gradient(
-    #ffffff 0deg 36deg,
-    #c0392b 36deg 72deg,
-    #ffffff 72deg 108deg,
-    #c0392b 108deg 144deg,
-    #ffffff 144deg 180deg,
-    #c0392b 180deg 216deg,
-    #ffffff 216deg 252deg,
-    #c0392b 252deg 288deg,
-    #ffffff 288deg 324deg,
-    #c0392b 324deg 360deg
+    #ffffff 0deg 10.909deg,
+    #c0392b 10.909deg 21.818deg,
+    #ffffff 21.818deg 32.727deg,
+    #c0392b 32.727deg 43.636deg,
+    #ffffff 43.636deg 54.545deg,
+    #c0392b 54.545deg 65.454deg,
+    #ffffff 65.454deg 76.363deg,
+    #c0392b 76.363deg 87.272deg,
+    #ffffff 87.272deg 98.181deg,
+    #c0392b 98.181deg 109.09deg,
+    #ffffff 109.09deg 120deg,
+    #c0392b 120deg 130.909deg,
+    #ffffff 130.909deg 141.818deg,
+    #c0392b 141.818deg 152.727deg,
+    #ffffff 152.727deg 163.636deg,
+    #c0392b 163.636deg 174.545deg,
+    #ffffff 174.545deg 185.454deg,
+    #c0392b 185.454deg 196.363deg,
+    #ffffff 196.363deg 207.272deg,
+    #c0392b 207.272deg 218.181deg,
+    #ffffff 218.181deg 229.09deg,
+    #c0392b 229.09deg 240deg,
+    #ffffff 240deg 250.909deg,
+    #c0392b 250.909deg 261.818deg,
+    #ffffff 261.818deg 272.727deg,
+    #c0392b 272.727deg 283.636deg,
+    #ffffff 283.636deg 294.545deg,
+    #c0392b 294.545deg 305.454deg,
+    #ffffff 305.454deg 316.363deg,
+    #c0392b 316.363deg 327.272deg,
+    #ffffff 327.272deg 338.181deg,
+    #c0392b 338.181deg 349.09deg,
+    #ffffff 349.09deg 360deg
   );
 }
 
@@ -148,24 +172,33 @@ body::before{
   top:50%;
   left:50%;
   transform-origin: 0 0;
+  /* Each segment is 10.909 degrees (360/33) */
+  transform: rotate(calc(10.909deg * var(--segment)));
 }
 
 .label span{
   display:block;
-  transform: rotate(75deg);
-  margin-top:-12px;
-  margin-left:50px;
+  transform: rotate(85deg) translateX(-10px);
+  margin-top:-8px;
+  margin-left:42px;
   font-weight:bold;
-  width:120px;
+  width:110px;
   text-align:left;
+  font-size: 9px;
+  line-height: 1.1;
 }
 
-.win-text{ color:#c0392b; font-size:22px; }
+.win-text{ 
+  color:#c0392b; 
+  font-size:9px;
+  font-weight: 800;
+}
+
 .gl-text{
   color:#fff;
-  font-size:11px;
-  line-height:1.2;
-  text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+  font-size:8px;
+  line-height:1.1;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.3);
   white-space:nowrap;
 }
 
