@@ -9,6 +9,27 @@
 <body>
   <img src="assets/img/logo%20Tokyo%20Store.png" alt="Tokyo Store" class="header-logo" onerror="this.style.display='none';">
 
+  <div class="card" id="phoneGate">
+    <h3>Add your phone number to activate the wheel</h3>
+
+    <div class="row">
+      <input
+        id="phoneInput"
+        type="tel"
+        inputmode="tel"
+        autocomplete="tel"
+        placeholder="20123456 or +21620123456"
+        required
+        pattern="^(\+216)?[0-9]{8}$"
+        title="Tunisian number only: 8 digits, or +216 then 8 digits"
+      />
+      <button id="activateBtn">Activate</button>
+    </div>
+
+    <div id="phoneError"></div>
+    <div class="mini">3 spins. Best discount is kept.</div>
+  </div>
+
   <div class="wheel-container">
     <div class="marker"></div>
 
@@ -18,53 +39,65 @@
     <div class="wheel" id="wheel">
       <div class="wheel-bg"></div>
       <div class="labels">
-        <div class="label" style="--segment: 0;"><span class="gl-text">Next Time</span></div>
-        <div class="label" style="--segment: 1;"><span class="win-text">10% sur les accessoires</span></div>
-        <div class="label" style="--segment: 2;"><span class="win-text">Coque Air pods 1/2</span></div>
-        <div class="label" style="--segment: 3;"><span class="gl-text">Next Time</span></div>
-        <div class="label" style="--segment: 4;"><span class="win-text">25dt Bon D'Achat</span></div>
-        <div class="label" style="--segment: 5;"><span class="win-text">Stickers</span></div>
-        <div class="label" style="--segment: 6;"><span class="gl-text">Next Time</span></div>
-        <div class="label" style="--segment: 7;"><span class="win-text">20% sur les accessoires</span></div>
-        <div class="label" style="--segment: 8;"><span class="win-text">lens Gratuit (iP 11/12/13)</span></div>
-        <div class="label" style="--segment: 9;"><span class="gl-text">Next Time</span></div>
-        <div class="label" style="--segment: 10;"><span class="win-text">Souris</span></div>
-        <div class="label" style="--segment: 11;"><span class="win-text">Etuit manette Ps4/PS5</span></div>
-        <div class="label" style="--segment: 12;"><span class="gl-text">Next Time</span></div>
-        <div class="label" style="--segment: 13;"><span class="win-text">2eme Achat Gratuit (le moin cher)</span></div>
-        <div class="label" style="--segment: 14;"><span class="win-text">Stickers</span></div>
-        <div class="label" style="--segment: 15;"><span class="gl-text">Next Time</span></div>
-        <div class="label" style="--segment: 16;"><span class="win-text">20DT Bon D'Achat</span></div>
-        <div class="label" style="--segment: 17;"><span class="win-text">Protection Camera (iP 11/ 12/ 13)</span></div>
-        <div class="label" style="--segment: 18;"><span class="gl-text">Next Time</span></div>
-        <div class="label" style="--segment: 19;"><span class="win-text">30% sur les accessoires</span></div>
-        <div class="label" style="--segment: 20;"><span class="win-text">Coque Air pods 1/2</span></div>
-        <div class="label" style="--segment: 21;"><span class="gl-text">Next Time</span></div>
-        <div class="label" style="--segment: 22;"><span class="win-text">Coque Karl (iP 11 / 12 /13 /14)</span></div>
-        <div class="label" style="--segment: 23;"><span class="win-text">Stickers</span></div>
-        <div class="label" style="--segment: 24;"><span class="gl-text">Next Time</span></div>
-        <div class="label" style="--segment: 25;"><span class="win-text">Power Bank</span></div>
-        <div class="label" style="--segment: 26;"><span class="win-text">Film de Protection (iP 11/12/13)</span></div>
-        <div class="label" style="--segment: 27;"><span class="gl-text">Next Time</span></div>
-        <div class="label" style="--segment: 28;"><span class="win-text">Etuit Space</span></div>
-        <div class="label" style="--segment: 29;"><span class="win-text">stickers</span></div>
-        <div class="label" style="--segment: 30;"><span class="gl-text">Next Time</span></div>
-        <div class="label" style="--segment: 31;"><span class="win-text">écouteur Inkax TO2 D</span></div>
-        <div class="label" style="--segment: 32;"><span class="win-text">lens Gratuit (iP 11/12/13)</span></div>
+        <div class="label" style="transform: rotate(18deg);"><span class="win-text">2%</span></div>
+        <div class="label" style="transform: rotate(54deg);"><span class="gl-text">حظا سعيدا<br>في المرة القادمة</span></div>
+        <div class="label" style="transform: rotate(90deg);"><span class="win-text">4%</span></div>
+        <div class="label" style="transform: rotate(126deg);"><span class="gl-text">حظا سعيدا<br>في المرة القادمة</span></div>
+        <div class="label" style="transform: rotate(162deg);"><span class="win-text">6%</span></div>
+        <div class="label" style="transform: rotate(198deg);"><span class="gl-text">حظا سعيدا<br>في المرة القادمة</span></div>
+        <div class="label" style="transform: rotate(234deg);"><span class="win-text">8%</span></div>
+        <div class="label" style="transform: rotate(270deg);"><span class="gl-text">حظا سعيدا<br>في المرة القادمة</span></div>
+        <div class="label" style="transform: rotate(306deg);"><span class="win-text">10%</span></div>
+        <div class="label" style="transform: rotate(342deg);"><span class="gl-text">حظا سعيدا<br>في المرة القادمة</span></div>
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
   </div>
 
-  <button id="spinBtn">SPIN THE WHEEL</button>
+  <button id="spinBtn" disabled>SPIN (0/3)</button>
+  <div id="statusLine"></div>
 
   <div class="modal-overlay" id="overlay"></div>
   <div id="resultModal">
     <h2 id="modalTitle">Result</h2>
     <div class="win-amount" id="modalResult"></div>
 
+    <div id="spinsLog" class="mini"></div>
+
+    <div id="codeContainer" style="display:none;">
+      <p>Your Promo Code:</p>
+      <div class="promo-box" id="generatedCode"></div>
+    </div>
+
     <p class="disclaimer">
       Sur toute achat plus que 199 <br>
-      <strong>EXCEPT (this promo code is not for phone purchase)</strong>
+      <strong>EXCEPT (this promo code is not for phone purshase)</strong>
     </p>
 
     <button class="close-btn" id="closeBtn">Close</button>
