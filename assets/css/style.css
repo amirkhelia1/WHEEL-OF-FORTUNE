@@ -1,12 +1,12 @@
-body {
+body{
   font-family: Arial, sans-serif;
-  min-height: 100vh;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #1f2a35;
+  min-height:100vh;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:#1f2a35;
 
   background-image: url("../img/Merry%20Christmas%20and%20new%20year%20background%20templ.jpg");
   background-size: cover;
@@ -15,257 +15,247 @@ body {
   background-attachment: fixed;
 }
 
-body::before {
-  content: "";
+body::before{
+  content:"";
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0,0,0,0.35);
   z-index: -1;
 }
 
-.header-logo {
-  max-width: 200px;
-  margin-bottom: 20px;
-  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, .25));
+.card{
+  width: 92%;
+  max-width: 460px;
+  background: rgba(255,255,255,.92);
+  border: 2px solid #111;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 14px 35px rgba(0,0,0,.25);
+  margin-bottom: 14px;
 }
 
-.wheel-container {
+.header-logo{
+  max-width: 200px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 6px 8px rgba(0,0,0,.25));
+}
+
+.row{ display:flex; gap:10px; }
+.row > *{ flex:1; }
+
+#phoneInput{
+  width:100%;
+  padding: 12px;
+  font-size:16px;
+  border:2px solid #ddd;
+  border-radius: 10px;
+  box-sizing:border-box;
+}
+
+#activateBtn{
+  width:100%;
+  padding: 12px;
+  font-size:16px;
+  background:#27ae60;
+  color:#fff;
+  border:0;
+  border-radius: 10px;
+  cursor:pointer;
+}
+
+#phoneError{
+  display:none;
+  margin-top:8px;
+  color:#c0392b;
+  font-weight:bold;
+}
+
+.mini{
+  font-size: 12px;
+  color:#556;
+  margin-top: 8px;
+}
+
+.wheel-container{
   position: relative;
-  width: 450px;
-  height: 450px;
+  width: 350px;
+  height: 350px;
   margin: 10px 0 18px;
 }
 
-.marker {
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-top: 40px solid #111;
+.marker{
+  position:absolute;
+  top:-15px;
+  left:50%;
+  transform:translateX(-50%);
+  width:0;height:0;
+  border-left:20px solid transparent;
+  border-right:20px solid transparent;
+  border-top:40px solid #111;
   z-index: 80;
 }
 
-.center-hub-logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 110px;
-  height: 110px;
+.center-hub-logo{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
-  padding: 8px;
+  padding: 6px;
   background: #fff;
   object-fit: contain;
   z-index: 70;
-  box-shadow: 0 0 15px rgba(0, 0, 0, .4);
-  pointer-events: none;
+  box-shadow: 0 0 12px rgba(0,0,0,.35);
+  pointer-events:none;
 }
 
-.wheel {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 12px solid #111;
-  overflow: hidden;
-  background: #fff;
-  position: relative;
+.wheel{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  border: 10px solid #111;
+  overflow:hidden;
+  background:#fff;
+  position:relative;
   transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
   z-index: 10;
 }
 
-.wheel-bg {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
+.wheel-bg{
+  width:100%;
+  height:100%;
+  border-radius:50%;
   background: conic-gradient(
-    #ffffff 0deg 10.909deg,
-    #c0392b 10.909deg 21.818deg,
-    #ffffff 21.818deg 32.727deg,
-    #c0392b 32.727deg 43.636deg,
-    #ffffff 43.636deg 54.545deg,
-    #c0392b 54.545deg 65.454deg,
-    #ffffff 65.454deg 76.363deg,
-    #c0392b 76.363deg 87.272deg,
-    #ffffff 87.272deg 98.181deg,
-    #c0392b 98.181deg 109.09deg,
-    #ffffff 109.09deg 120deg,
-    #c0392b 120deg 130.909deg,
-    #ffffff 130.909deg 141.818deg,
-    #c0392b 141.818deg 152.727deg,
-    #ffffff 152.727deg 163.636deg,
-    #c0392b 163.636deg 174.545deg,
-    #ffffff 174.545deg 185.454deg,
-    #c0392b 185.454deg 196.363deg,
-    #ffffff 196.363deg 207.272deg,
-    #c0392b 207.272deg 218.181deg,
-    #ffffff 218.181deg 229.09deg,
-    #c0392b 229.09deg 240deg,
-    #ffffff 240deg 250.909deg,
-    #c0392b 250.909deg 261.818deg,
-    #ffffff 261.818deg 272.727deg,
-    #c0392b 272.727deg 283.636deg,
-    #ffffff 283.636deg 294.545deg,
-    #c0392b 294.545deg 305.454deg,
-    #ffffff 305.454deg 316.363deg,
-    #c0392b 316.363deg 327.272deg,
-    #ffffff 327.272deg 338.181deg,
-    #c0392b 338.181deg 349.09deg,
-    #ffffff 349.09deg 360deg
+    #ffffff 0deg 36deg,
+    #c0392b 36deg 72deg,
+    #ffffff 72deg 108deg,
+    #c0392b 108deg 144deg,
+    #ffffff 144deg 180deg,
+    #c0392b 180deg 216deg,
+    #ffffff 216deg 252deg,
+    #c0392b 252deg 288deg,
+    #ffffff 288deg 324deg,
+    #c0392b 324deg 360deg
   );
 }
 
-.labels {
-  position: absolute;
-  inset: 0;
-}
+.labels{ position:absolute; inset:0; }
 
-.label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+.label{
+  position:absolute;
+  top:50%;
+  left:50%;
   transform-origin: 0 0;
-  transform: rotate(calc(10.909deg * var(--segment)));
 }
 
-.label span {
-  display: block;
-  transform: rotate(90deg);
-  transform-origin: left center;
-  margin-left: 90px;
-  font-weight: 800;
-  width: 140px;
-  text-align: center;
-  font-size: 13px;
-  line-height: 1.3;
-  white-space: nowrap;
-  letter-spacing: 0.5px;
+.label span{
+  display:block;
+  transform: rotate(75deg);
+  margin-top:-12px;
+  margin-left:50px;
+  font-weight:bold;
+  width:120px;
+  text-align:left;
 }
 
-.win-text {
-  color: #fff;
-  font-size: 13px;
-  font-weight: 800;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, .3);
+.win-text{ color:#c0392b; font-size:22px; }
+.gl-text{
+  color:#fff;
+  font-size:11px;
+  line-height:1.2;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.2);
+  white-space:nowrap;
 }
 
-.gl-text {
-  color: #000;
-  font-size: 13px;
-  font-weight: 800;
-  text-shadow: none;
+#spinBtn{
+  padding: 14px 40px;
+  font-size: 20px;
+  background:#1f2a35;
+  color:#fff;
+  border:0;
+  border-radius: 8px;
+  cursor:pointer;
+  box-shadow: 0 6px 10px rgba(0,0,0,.18);
 }
 
-#spinBtn {
-  padding: 16px 50px;
-  font-size: 22px;
-  background: #1f2a35;
-  color: #fff;
-  border: 0;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, .25);
-  transition: transform 0.1s ease;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+#spinBtn:disabled{
+  background:#95a5a6;
+  cursor:not-allowed;
+  box-shadow:none;
 }
 
-#spinBtn:hover {
-  transform: scale(1.05);
-  background: #2c3e50;
+#statusLine{
+  margin-top:10px;
+  font-weight:bold;
+  color:#ffffff;
+  text-shadow: 0 2px 10px rgba(0,0,0,.4);
+  display:block;
+  text-align:center;
+  max-width: 92%;
 }
 
-#spinBtn:active {
-  transform: scale(0.98);
-}
-
-#spinBtn:disabled {
-  background: #95a5a6;
-  cursor: not-allowed;
-  box-shadow: none;
-  transform: scale(1);
-}
-
-#resultModal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
+#resultModal{
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
   transform: translate(-50%, -50%);
   width: 88%;
   max-width: 430px;
-  background: #fff;
-  border: 2px solid #111;
+  background:#fff;
+  border:2px solid #111;
   border-radius: 12px;
   padding: 18px;
   z-index: 300;
-  text-align: center;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, .45);
+  text-align:center;
+  box-shadow: 0 20px 50px rgba(0,0,0,.45);
 }
 
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, .55);
+.modal-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,.55);
   z-index: 250;
 }
 
-.win-amount {
+.win-amount{
   font-size: 1.6em;
-  color: #27ae60;
+  color:#27ae60;
   font-weight: 800;
   margin: 8px 0;
 }
 
-.disclaimer {
-  font-size: .85em;
-  color: #555;
+.promo-box{
+  background:#f0f0f0;
+  border:2px dashed #111;
+  padding:10px;
+  font-family: "Courier New", monospace;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color:#c0392b;
+  margin: 10px 0 6px;
+}
+
+.disclaimer{
+  font-size:.85em;
+  color:#555;
   margin-top: 12px;
   font-style: italic;
-  border-top: 1px solid #ddd;
+  border-top:1px solid #ddd;
   padding-top: 10px;
 }
 
-.close-btn {
+.close-btn{
   margin-top: 12px;
   padding: 10px 25px;
-  background: #27ae60;
-  color: #fff;
-  border: 0;
+  background:#27ae60;
+  color:#fff;
+  border:0;
   border-radius: 8px;
-  cursor: pointer;
+  cursor:pointer;
   font-size: 16px;
-  transition: background 0.3s ease;
-}
-
-.close-btn:hover {
-  background: #229954;
-}
-
-@media (max-width: 480px) {
-  .wheel-container {
-    width: 320px;
-    height: 320px;
-  }
-
-  .center-hub-logo {
-    width: 85px;
-    height: 85px;
-  }
-
-  .label span {
-    margin-left: 65px;
-    font-size: 9px;
-    width: 100px;
-  }
-
-  #spinBtn {
-    padding: 14px 35px;
-    font-size: 18px;
-  }
 }
