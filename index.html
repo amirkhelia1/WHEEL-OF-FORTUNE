@@ -9,27 +9,6 @@
 <body>
   <img src="assets/img/logo%20Tokyo%20Store.png" alt="Tokyo Store" class="header-logo" onerror="this.style.display='none';">
 
-  <div class="card" id="phoneGate">
-    <h3>Add your phone number to activate the wheel</h3>
-
-    <div class="row">
-      <input
-        id="phoneInput"
-        type="tel"
-        inputmode="tel"
-        autocomplete="tel"
-        placeholder="20123456 or +21620123456"
-        required
-        pattern="^(\+216)?[0-9]{8}$"
-        title="Tunisian number only: 8 digits, or +216 then 8 digits"
-      />
-      <button id="activateBtn">Activate</button>
-    </div>
-
-    <div id="phoneError"></div>
-    <div class="mini">3 spins. Best discount is kept.</div>
-  </div>
-
   <div class="wheel-container">
     <div class="marker"></div>
 
@@ -76,24 +55,16 @@
     </div>
   </div>
 
-  <button id="spinBtn" disabled>SPIN (0/3)</button>
-  <div id="statusLine"></div>
+  <button id="spinBtn">SPIN THE WHEEL</button>
 
   <div class="modal-overlay" id="overlay"></div>
   <div id="resultModal">
     <h2 id="modalTitle">Result</h2>
     <div class="win-amount" id="modalResult"></div>
 
-    <div id="spinsLog" class="mini"></div>
-
-    <div id="codeContainer" style="display:none;">
-      <p>Your Promo Code:</p>
-      <div class="promo-box" id="generatedCode"></div>
-    </div>
-
     <p class="disclaimer">
       Sur toute achat plus que 199 <br>
-      <strong>EXCEPT (this promo code is not for phone purshase)</strong>
+      <strong>EXCEPT (this promo code is not for phone purchase)</strong>
     </p>
 
     <button class="close-btn" id="closeBtn">Close</button>
