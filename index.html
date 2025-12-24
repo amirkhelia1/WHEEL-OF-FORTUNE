@@ -9,25 +9,11 @@
 <body>
   <img src="assets/img/logo%20Tokyo%20Store.png" alt="Tokyo Store" class="header-logo" onerror="this.style.display='none';">
 
-  <div class="card" id="phoneGate">
-    <h3>Add your phone number to activate the wheel</h3>
+  <!-- PHONE GATE REMOVED -->
 
-    <div class="row">
-      <input
-        id="phoneInput"
-        type="tel"
-        inputmode="tel"
-        autocomplete="tel"
-        placeholder="20123456 or +21620123456"
-        required
-        pattern="^(\+216)?[0-9]{8}$"
-        title="Tunisian number only: 8 digits, or +216 then 8 digits"
-      />
-      <button id="activateBtn">Activate</button>
-    </div>
-
-    <div id="phoneError"></div>
-    <div class="mini">3 spins. Best discount is kept.</div>
+  <div class="card" id="infoCard">
+    <h3>Spin the wheel and get your discount</h3>
+    <div class="mini">Each round has 3 spins. Best discount is kept and a promo code is generated.</div>
   </div>
 
   <div class="wheel-container">
@@ -50,37 +36,10 @@
         <div class="label" style="transform: rotate(306deg);"><span class="win-text">10%</span></div>
         <div class="label" style="transform: rotate(342deg);"><span class="gl-text">حظا سعيدا<br>في المرة القادمة</span></div>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
   </div>
 
-  <button id="spinBtn" disabled>SPIN (0/3)</button>
+  <button id="spinBtn">SPIN (0/3)</button>
   <div id="statusLine"></div>
 
   <div class="modal-overlay" id="overlay"></div>
